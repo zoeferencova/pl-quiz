@@ -102,3 +102,78 @@ const STORE = [
 	};
 ];
 
+let qnumber = 0;
+let score = 0;
+
+function incrementQNumber() {
+	//increment qnumber in html
+	//increment qnumber in js
+}
+
+function incrementScore() {
+	//increment score in html
+	//increment score in js
+}
+
+function findQuestionAtIndex(index) {
+	//find question and responses at given index in the STORE array
+	//return question object
+}
+
+function renderQuestion() {
+	//hide html from previous page
+	//show html for question page using object from findQuestionAtIndex function
+	//increment question number
+}
+
+function startQuiz() {
+	//listen for click on start button
+	//render question page
+	//use information from index 0 on STORE array to populate question page
+}
+
+function checkResult() {
+	//check to see if result matches the correct result in the object
+}
+
+function correctResult() {
+	//show html for correct answer
+	//increment score
+}
+
+function wrongResult() {
+	//show html for incorrect answer
+}
+
+function showResult() {
+	//listen for click on submit button
+	//hide html from question
+	//use checkResult and then correctResult or wrongResult depending on whether it is true/false
+}
+
+function nextButton() {
+	//listen for click on next button
+	//hide result page
+	//increment qnumber
+	//call renderQuestion function
+}
+
+function checkFinal() {
+	//check to see if question is the final question
+}
+
+function showFinal() {
+	//if checkFinal comes back true
+	//hide result page
+	//if score is greater than or equal to 6
+		//show good final html
+	//if score is less than 6
+		//show bad final html
+}
+
+function tryAgain() {
+	//listen for click on try again button
+	//figure out how to get back to original state
+}
+
+

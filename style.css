@@ -1,0 +1,44 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+	text-align: center;
+	padding: 2%;
+}
+
+.quiz-box {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	margin: 0 auto;
+	background: lightgray;
+	max-width: 1000px;
+	min-height: 300px;
+	max-height: 800px;
+	padding: 5%;
+	margin-top: 50px;
+}
+
+header {
+	margin: auto;
+	text-align: center;
+}
+
+.question-field {
+	padding: 5%;
+	margin: auto;
+}
+
+.question-counter {
+	margin-right: 150px;
+}
+
+.response-image, .final-image {
+	width: 70%;
+}
+
+label {
+	display: inline;
+}

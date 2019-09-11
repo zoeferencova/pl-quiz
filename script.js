@@ -107,12 +107,19 @@ let score = 0;
 
 function incrementQNumber() {
 	qnumber++;
-	$('.qnumber').text(qnumber);
+	$('.qnumber').text(qnumber+1);
 }
 
 function incrementScore() {
 	score++;
 	$('.score').text(score);
+}
+
+function resetCounters() {
+	$('.qnumber').text(0);
+	$('.score').text(0);
+	qnumber = 0;
+	score = 0;
 }
 
 function hideContents() {
@@ -136,17 +143,11 @@ function questionMaker() {
 }
 
 function renderQuestion() {
-	//hide html from previous page
-	//set html to question using object from findQuestionAtIndex function
-	//increment question number
 	hideContents()
 	$('.quiz-box').html(questionMaker())
 }
 
 function startQuiz() {
-	//listen for click on start button
-	//render question page
-	//use information from index 0 on STORE array to populate question page
 	$('.start-btn').click(function(e) {
 		e.preventDefault();
 		renderQuestion()
@@ -155,23 +156,17 @@ function startQuiz() {
 }
 
 function correctResult() {
-	//show html for correct answer
-	//increment score
 	hideContents()
-	$('.quiz-box').html(`<h2>That's the right answer!</h2><img class="response-image" src="images/quiz-app-eden.jpg" alt="Soccer player celebrating goal."><p>Option 1</p><button role="button" type="button" class="btn next-btn">Next</button>`)
+	$('.quiz-box').html(`<h2>That's the right answer!</h2><img class="response-image" src="images/quiz-app-eden.jpg" alt="Soccer player celebrating goal."><p>${STORE[qnumber].answers[STORE[qnumber].correct]}</p><button role="button" type="button" class="btn next-btn">Next</button>`)
 	incrementScore();
 }
 
 function wrongResult() {
-	//show html for incorrect answer
 	hideContents()
 	$('.quiz-box').html(`<h2>That's the wrong answer!</h2><img class="response-image" src="images/quiz-app-sadmou.jpg" alt="A disappointed Jose Mourinho."><p>Correct Answer: ${STORE[qnumber].answers[STORE[qnumber].correct]}</p><button role="button" type="button" class="btn next-btn">Next</button>`)
 }
 
 function showResult() {
-	//listen for click on submit button
-	//hide html from question
-	//use checkResult and then correctResult or wrongResult depending on whether it is true/false
 	$('.quiz-box').on('click', '.submit-btn', function(e) {
 		e.preventDefault();
 		let choice = $('input[name="options"]:checked').val();
@@ -183,43 +178,58 @@ function showResult() {
 	})
 }
 
-
 function nextButton() {
-	//listen for click on next button
-	//hide result page
-	//increment qnumber
-	//call renderQuestion function
 	$('.quiz-box').on('click', '.next-btn', function(e) {
 		e.preventDefault();
 		hideContents();
 		incrementQNumber();
-		renderQuestion();
+		if (qnumber < 10) {
+			renderQuestion();
+		} else {
+			showFinal();
+		}
+		
 	})
-
 }
 
-function checkFinal() {
-	//check to see if question is the final question
+function showFinalBad() {
+	hideContents();
+	$('.quiz-box').html(`<h2>Better luck next time!</h2><img class="final-image" src="images/quiz-app-liverpool-loss.jpg" alt="Liverpool after losing a soccer match."><p>You scored ${score}/10</p><button role="button" type="button" class="btn end-btn">Try Again</button>`)
+}
+
+function showFinalGood() {
+	hideContents();
+	$('.quiz-box').html(`<h2>Good job!</h2><img class="final-image" src="images/quiz-app-chelsea-win.JPG" alt="Chelsea FC win the Premier League."><p>You scored ${score}/10</p><button role="button" type="button" class="btn end-btn">Try Again</button>`)
 }
 
 function showFinal() {
-	//if checkFinal comes back true
-	//hide result page
-	//if score is greater than or equal to 6
-		//show good final html
-	//if score is less than 6
-		//show bad final html
+	if (score > 5) {
+		showFinalGood();
+	} else {
+		showFinalBad();
+	}
+	$('.qnumber').text(10);
+}
+
+function restart() {
+	hideContents();
+	$('.quiz-box').html(`<h2 class="quiz-subtitle js-start">How much do you know about the Premier League?</h2><button role="button" type="button" class="btn start-btn">Get Started</button>`);
+	resetCounters();
+	startQuiz();
 }
 
 function tryAgain() {
-	//listen for click on try again button
-	//figure out how to get back to original state
+	$('.quiz-box').on('click', '.end-btn', function() {
+		restart();
+
+	})
 }
 
 function functionHandler() {
 	startQuiz();
 	showResult();
-	nextButton()
+	nextButton();
+	tryAgain();
 }
 
 $(functionHandler);

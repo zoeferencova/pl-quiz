@@ -179,7 +179,9 @@ function showResult() {
 	$('.quiz-box').on('click', '.submit-btn', function(e) {
 		e.preventDefault();
 		let choice = $('input[name="options"]:checked').val();
-		if (choice == findQuestionAtIndex(qnumber).correct) {
+		if (!choice) {
+			alert('Please pick an option!')
+		} else if (choice == findQuestionAtIndex(qnumber).correct) {
 			correctResult();
 		} else {
 			wrongResult();
@@ -203,7 +205,7 @@ function nextButton() {
 
 function showFinalBad() {
 	hideContents();
-	$('.quiz-box').html(`<h2>Better luck next time!</h2><img class="final-image" src="images/quiz-app-liverpool-loss.jpg" alt="Liverpool after losing a soccer match."><p>You scored ${score}/10</p><button role="button" type="button" class="btn end-btn">Rematch</button>`)
+	$('.quiz-box').html(`<h2>That was a worse display than Liverpool's Premier League title efforts. Better luck next time!</h2><img class="final-image" src="images/quiz-app-liverpool-loss.jpg" alt="Liverpool after losing a soccer match."><p>You scored ${score}/10</p><button role="button" type="button" class="btn end-btn">Rematch</button>`)
 }
 
 function showFinalGood() {

@@ -198,5 +198,21 @@ label {
 	.container {
 		padding: 5%;
 	}
+	.quiz-box label {
+		font-size: 13px;
+		margin: 10px;
+	}
+	.quiz-box legend {
+		font-size: 16px;
+	}
+
+	.btn {
+		margin: 7px;
+		margin-top: 0px;
+	}
+
+	p {
+		font-size: 14px;
+	}
 }
 

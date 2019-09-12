@@ -213,7 +213,7 @@ function showFinal() {
 
 function restart() {
 	hideContents();
-	$('.quiz-box').html(`<h2 class="quiz-subtitle js-start">How much do you know about the Premier League?</h2><button role="button" type="button" class="btn start-btn">Get Started</button>`);
+	$('.quiz-box').html(`<h2 class="quiz-subtitle">How much do you know about the Premier League?</h2><img src="images/quiz-app-players.jpg"><button role="button" type="button" class="btn start-btn">Get Started</button>`);
 	resetCounters();
 	startQuiz();
 }

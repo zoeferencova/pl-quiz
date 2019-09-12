@@ -173,11 +173,11 @@ label {
 @media only screen and (max-width: 400px) {
 	h1 {
 		display: block;
-		font-size: 27px;
+		font-size: 30px;
 	}
 	.logo {
-		margin-bottom: -23px;
-		width: 270px;
+		margin-bottom: -26px;
+		width: 300px;
 	}
 	.question-counter {
 		margin-right: 70px;

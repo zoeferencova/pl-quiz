@@ -107,7 +107,7 @@ p {
 }
 
 .quiz-box input {
-	visibility: hidden;
+	opacity: 0;
 }
 
 .quiz-box label {
@@ -124,10 +124,14 @@ p {
 	font-weight: 500;
 }
 
-input:checked + label {
+input:checked + label, label:hover, input[type=radio]:focus + label {
 	background-color: #BD1E6A;
 	border: 4px solid white;
 	padding: 11px 26px;
+}
+
+input[type=radio]:focus + label {
+  outline: rgba(77, 97, 171, 0.5) auto 3px;
 }
 
 .question-field {
@@ -220,6 +224,9 @@ label {
 
 	p {
 		font-size: 14px;
+	}
+	.quiz-box img {
+		width: 80%;
 	}
 }
 

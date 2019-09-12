@@ -138,7 +138,7 @@ function getResponses() {
 
 function questionMaker() {
 	const responseHTML = getResponses();
-	const questionHTML = `<form class="quiz-questions"><fieldset class="question-field"><legend class="question">${findQuestionAtIndex(qnumber).question}</legend>${responseHTML}</fieldset><button role="button" type="button" class="btn submit-btn">Submit</button></form>`
+	const questionHTML = `<form class="quiz-questions"><fieldset class="question-field"><legend class="question">${findQuestionAtIndex(qnumber).question}</legend>${responseHTML}</fieldset><button role="button" type="button" class="btn submit-btn">Shoot</button></form>`
 	return questionHTML;
 }
 
@@ -157,13 +157,13 @@ function startQuiz() {
 
 function correctResult() {
 	hideContents()
-	$('.quiz-box').html(`<h2>That's the right answer!</h2><img class="response-image" src="images/quiz-app-eden.jpg" alt="Soccer player celebrating goal."><p>${STORE[qnumber].answers[STORE[qnumber].correct]}</p><button role="button" type="button" class="btn next-btn">Next</button>`)
+	$('.quiz-box').html(`<h2>You scored!</h2><img class="response-image" src="images/quiz-app-eden.jpg" alt="Soccer player celebrating goal."><p>${STORE[qnumber].answers[STORE[qnumber].correct]}</p><button role="button" type="button" class="btn next-btn">Next</button>`)
 	incrementScore();
 }
 
 function wrongResult() {
 	hideContents()
-	$('.quiz-box').html(`<h2>That's the wrong answer!</h2><img class="response-image" src="images/quiz-app-sadmou.jpg" alt="A disappointed Jose Mourinho."><p>Correct Answer: ${STORE[qnumber].answers[STORE[qnumber].correct]}</p><button role="button" type="button" class="btn next-btn">Next</button>`)
+	$('.quiz-box').html(`<h2>You missed!</h2><img class="response-image" src="images/quiz-app-sadmou.jpg" alt="A disappointed Jose Mourinho."><p>Correct Answer: ${STORE[qnumber].answers[STORE[qnumber].correct]}</p><button role="button" type="button" class="btn next-btn">Next</button>`)
 }
 
 function showResult() {
@@ -194,12 +194,12 @@ function nextButton() {
 
 function showFinalBad() {
 	hideContents();
-	$('.quiz-box').html(`<h2>Better luck next time!</h2><img class="final-image" src="images/quiz-app-liverpool-loss.jpg" alt="Liverpool after losing a soccer match."><p>You scored ${score}/10</p><button role="button" type="button" class="btn end-btn">Try Again</button>`)
+	$('.quiz-box').html(`<h2>Better luck next time!</h2><img class="final-image" src="images/quiz-app-liverpool-loss.jpg" alt="Liverpool after losing a soccer match."><p>You scored ${score}/10</p><button role="button" type="button" class="btn end-btn">Rematch</button>`)
 }
 
 function showFinalGood() {
 	hideContents();
-	$('.quiz-box').html(`<h2>Good job!</h2><img class="final-image" src="images/quiz-app-chelsea-win.JPG" alt="Chelsea FC win the Premier League."><p>You scored ${score}/10</p><button role="button" type="button" class="btn end-btn">Try Again</button>`)
+	$('.quiz-box').html(`<h2>All of those early Saturday mornings paid off!<br> You know your stuff.</h2><img class="final-image" src="images/quiz-app-chelsea-win.JPG" alt="Chelsea FC win the Premier League."><p>You scored ${score}/10</p><button role="button" type="button" class="btn end-btn">Rematch</button>`)
 }
 
 function showFinal() {
@@ -213,7 +213,7 @@ function showFinal() {
 
 function restart() {
 	hideContents();
-	$('.quiz-box').html(`<h2 class="quiz-subtitle">How much do you know about the Premier League?</h2><img src="images/quiz-app-players.jpg"><button role="button" type="button" class="btn start-btn">Get Started</button>`);
+	$('.quiz-box').html(`<h2 class="quiz-subtitle">How much do you know about the Premier League?</h2><img src="images/quiz-app-players.jpg"><button role="button" type="button" class="btn start-btn">Kickoff</button>`);
 	resetCounters();
 	startQuiz();
 }

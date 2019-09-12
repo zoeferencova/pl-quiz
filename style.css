@@ -199,8 +199,9 @@ label {
 		padding: 5%;
 	}
 	.quiz-box label {
-		font-size: 14px;
-		margin: 10px;
+		font-size: 15px;
+		margin: 7px;
+		padding: 10px 30px;
 	}
 	.quiz-box legend {
 		font-size: 16px;

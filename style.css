@@ -184,7 +184,7 @@ label {
 	}
 	.quiz-box {
 		min-height: 300px;
-		margin-top: 30px;
+		margin-top: 20px;
 	}
 
 	h2 {
@@ -193,6 +193,7 @@ label {
 
 	.counters {
 		font-size: 16px;
+		margin-top: 30px;
 	}
 	.container {
 		padding: 5%;

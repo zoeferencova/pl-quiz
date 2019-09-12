@@ -2,23 +2,41 @@
   box-sizing: border-box;
 }
 
+html {
+	height: 100%;
+}
+
 body {
 	text-align: center;
 	padding: 2%;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 600;
+	color: white;
+	background-image: linear-gradient(#37003C, #640A4C);
+	background-size: cover;
+	background-repeat: no-repeat;
 }
 
 .quiz-box {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: space-around;
 	margin: 0 auto;
 	background: lightgray;
-	max-width: 1000px;
-	min-height: 300px;
-	max-height: 800px;
-	padding: 5%;
+	max-width: 900px;
+	max-height: 700px;
+	min-height: 500px;
+	padding: 2%;
 	margin-top: 50px;
+	background: repeating-linear-gradient(
+		180deg,
+		#127500,
+		#127500 120px,
+		#45823B 120px,
+		#45823B 240px
+	);
+	border-radius: 5px;
 }
 
 header {
@@ -26,13 +44,89 @@ header {
 	text-align: center;
 }
 
+h1 {
+	font-size: 52px;
+	font-weight: 700;
+	display: inline;
+	margin-left: 7px;
+}
+
+h2 {
+	font-size: 25px;
+}
+
+p {
+	font-size: 20px;
+}
+
+.counters {
+	margin-top: 60px;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.logo {
+	margin-bottom: -40px;
+}
+
+.btn {
+	border: 4px solid white;
+	border-radius: 7px;
+	padding: 10px 15px;
+	background-color: #BD1E6A;
+	color: white;
+	font-weight: bold;
+	font-size: 16px;
+	font-family: 'Montserrat', sans-serif;
+	cursor: pointer;
+}
+
+.quiz-box img {
+	border-radius: 5px;
+	margin: 30px;
+	width: 70%;
+}
+
+.quiz-box fieldset {
+	border: none;
+}
+
+.quiz-box legend {
+	font-size: 20px;
+}
+
+.quiz-box input {
+	visibility: hidden;
+}
+
+.quiz-box label {
+	background: #37003C;
+	color: white;
+	padding: 15px 30px;
+	margin: 15px;
+	display: inline-block;
+	width: 70%;
+	border-radius: 30px;
+	font-size: 16px;
+	cursor: pointer;
+	text-align: left;
+	font-weight: 500;
+}
+
+input:checked + label {
+	background-color: #BD1E6A;
+	border: 4px solid white;
+	padding: 11px 26px;
+}
+
 .question-field {
 	padding: 5%;
 	margin: auto;
+
 }
 
 .question-counter {
-	margin-right: 150px;
+	margin-right: 600px;
 }
 
 .response-image, .final-image {
@@ -42,3 +136,26 @@ header {
 label {
 	display: inline;
 }
+
+.btn {
+	font-family: 'Montserrat', sans-serif;
+	margin: 20px;
+}
+
+@media only screen and (max-width: 900px) {
+	h1 {
+		display: block;
+		font-size: 38px;
+	}
+	.logo {
+		margin-bottom: -30px;
+		width: 350px;
+	}
+	.question-counter {
+		margin-right: 150px;
+	}
+	.quiz-box {
+		min-height: 300px;
+	}
+}
+

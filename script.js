@@ -132,7 +132,7 @@ function findQuestionAtIndex(index) {
 
 function getResponses() {
 	const responseArray = findQuestionAtIndex(qnumber).answers;
-	const responseString = responseArray.map(e => `<div><input type="radio" value=${responseArray.indexOf(e)} name="options" id="option${responseArray.indexOf(e)}" class="option"><label for="option${responseArray.indexOf(e)}">${e}</label></div>`).join('');
+	const responseString = responseArray.map(e => `<div><input type="radio" value=${responseArray.indexOf(e)} name="options" id="option${responseArray.indexOf(e)}" class="option" required /><label for="option${responseArray.indexOf(e)}">${e}</label></div>`).join('');
 	return responseString;
 }
 

@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+
 }
 
 html {
@@ -8,13 +9,19 @@ html {
 
 body {
 	text-align: center;
-	padding: 2%;
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 600;
 	color: white;
 	background-image: linear-gradient(#37003C, #640A4C);
-	background-size: cover;
 	background-repeat: no-repeat;
+	min-height: 100%;
+	min-width: 100%;
+	-webkit-background-size: cover;
+    -moz-background-size: cover; 
+    -o-background-size: cover;   
+    background-size: cover; 
+    margin: 0;
+    padding: 0;
 }
 
 .quiz-box {
@@ -42,6 +49,7 @@ body {
 header {
 	margin: auto;
 	text-align: center;
+	padding-top: 20px;
 }
 
 h1 {

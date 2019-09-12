@@ -122,6 +122,15 @@ function resetCounters() {
 	score = 0;
 }
 
+function randomImage(img1, img2) {
+	let num = Math.floor(Math.random()*2);
+	if (num === 0) {
+		return img1;
+	} else {
+		return img2;
+	}
+}
+
 function hideContents() {
 	$('.quiz-box').children().hide();
 }
@@ -157,13 +166,13 @@ function startQuiz() {
 
 function correctResult() {
 	hideContents()
-	$('.quiz-box').html(`<h2>You scored!</h2><img class="response-image" src="images/quiz-app-eden.jpg" alt="Soccer player celebrating goal."><p>${STORE[qnumber].answers[STORE[qnumber].correct]}</p><button role="button" type="button" class="btn next-btn">Next</button>`)
+	$('.quiz-box').html(`<h2>You scored!</h2><img class="response-image" src=${randomImage("images/quiz-app-eden.jpg", "images/quiz-app-lamps.jpg")} alt="Soccer player celebrating goal."><p>${STORE[qnumber].answers[STORE[qnumber].correct]}</p><button role="button" type="button" class="btn next-btn">Next</button>`)
 	incrementScore();
 }
 
 function wrongResult() {
 	hideContents()
-	$('.quiz-box').html(`<h2>You missed!</h2><img class="response-image" src="images/quiz-app-sadmou.jpg" alt="A disappointed Jose Mourinho."><p>Correct Answer: ${STORE[qnumber].answers[STORE[qnumber].correct]}</p><button role="button" type="button" class="btn next-btn">Next</button>`)
+	$('.quiz-box').html(`<h2>You missed!</h2><img class="response-image" src=${randomImage("images/quiz-app-sadmou.jpg", "images/quiz-app-lukaku.jpg")} alt="A disappointed soccer player."><p>Correct Answer: ${STORE[qnumber].answers[STORE[qnumber].correct]}</p><button role="button" type="button" class="btn next-btn">Next</button>`)
 }
 
 function showResult() {

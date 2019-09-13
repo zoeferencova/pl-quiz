@@ -154,7 +154,7 @@ label {
 
 .btn {
 	font-family: 'Montserrat', sans-serif;
-	margin: 20px;
+	margin: 10px;
 }
 
 @media only screen and (max-width: 900px) {
@@ -222,8 +222,6 @@ label {
 	}
 	
 	input:checked + label {
-		background-color: #BD1E6A;
-		border: 4px solid white;
 		padding: 8px 26px;
 	}
 	

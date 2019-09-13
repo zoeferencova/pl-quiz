@@ -124,70 +124,51 @@ function resetCounters() {
 
 function randomImage(img1, img2) {
 	let num = Math.floor(Math.random()*2);
-	if (num === 0) {
-		return img1;
-	} else {
-		return img2;
-	}
+	return num === 0 ? img1 : img2;
 }
 
 function hideContents() {
 	$('.quiz-box').children().hide();
 }
 
-function findQuestionAtIndex(index) {
-	return STORE[index];
-}
-
-function getResponses() {
-	const responseArray = findQuestionAtIndex(qnumber).answers;
-	const responseString = responseArray.map(e => `<div><input type="radio" value=${responseArray.indexOf(e)} name="options" id="option${responseArray.indexOf(e)}" class="option" required /><label for="option${responseArray.indexOf(e)}">${e}</label></div>`).join('');
-	return responseString;
-}
-
-function questionMaker() {
-	const responseHTML = getResponses();
-	const questionHTML = `<form class="quiz-questions"><fieldset class="question-field"><legend class="question">${findQuestionAtIndex(qnumber).question}</legend>${responseHTML}</fieldset><button role="button" type="button" class="btn submit-btn">Shoot</button></form>`
-	return questionHTML;
-}
-
-function renderQuestion() {
-	hideContents()
-	$('.quiz-box').html(questionMaker())
-}
-
 function startQuiz() {
 	$('.start-btn').click(function(e) {
 		e.preventDefault();
-		renderQuestion()
+		showNewQuestion();
 		$('.qnumber').text(1);
 	});
 }
 
-function correctResult() {
-	hideContents()
-	$('.quiz-box').html(`<h2>You scored!</h2><img class="response-image" src=${randomImage("images/quiz-app-eden.jpg", "images/quiz-app-lamps.jpg")} alt="Soccer player celebrating goal."><p>${STORE[qnumber].answers[STORE[qnumber].correct]}</p><button role="button" type="button" class="btn next-btn">Next</button>`)
-	incrementScore();
-}
-
-function wrongResult() {
-	hideContents()
-	$('.quiz-box').html(`<h2>You missed!</h2><img class="response-image" src=${randomImage("images/quiz-app-sadmou.jpg", "images/quiz-app-lukaku.jpg")} alt="A disappointed soccer player."><p>Correct Answer: ${STORE[qnumber].answers[STORE[qnumber].correct]}</p><button role="button" type="button" class="btn next-btn">Next</button>`)
+function showNewQuestion() {
+	const responseArray = STORE[qnumber].answers;
+	const newArray = [];
+	for (i=0; i < responseArray.length; i++) {
+		newArray.push(`<div><input type="radio" value=${i} name="options" id="option${i}" class="option" required /><label for="option${i}">${responseArray[i]}</label></div>`);
+	}
+	const responseHTML = newArray.join('');
+	const questionHTML = `<form class="quiz-questions"><fieldset class="question-field"><legend class="question">${STORE[qnumber].question}</legend>${responseHTML}</fieldset><button role="button" type="button" class="btn submit-btn">Shoot</button></form>`
+	hideContents();
+	$('.quiz-box').html(questionHTML);
 }
 
 function showResult() {
 	$('.quiz-box').on('click', '.submit-btn', function(e) {
 		e.preventDefault();
-		let choice = $('input[name="options"]:checked').val();
-		if (!choice) {
-			alert('Please pick an option!')
-		} else if (choice == findQuestionAtIndex(qnumber).correct) {
-			correctResult();
+		let choice = Number($('input[name="options"]:checked').val());
+		console.log(choice);
+		console.log(STORE[qnumber].correct);
+		if (choice === undefined) {
+			alert('Please pick an option!');
+		} else if (choice === STORE[qnumber].correct) {
+			hideContents();
+			$('.quiz-box').html(`<h2>You scored!</h2><img class="response-image" src=${randomImage("images/quiz-app-eden.jpg", "images/quiz-app-lamps.jpg")} alt="Soccer player celebrating goal."><p>${STORE[qnumber].answers[STORE[qnumber].correct]}</p><button role="button" type="button" class="btn next-btn">Next</button>`)
+			incrementScore();
 		} else {
-			wrongResult();
+			hideContents();
+			$('.quiz-box').html(`<h2>You missed!</h2><img class="response-image" src=${randomImage("images/quiz-app-sadmou.jpg", "images/quiz-app-lukaku.jpg")} alt="A disappointed soccer player."><p>Correct Answer: ${STORE[qnumber].answers[STORE[qnumber].correct]}</p><button role="button" type="button" class="btn next-btn">Next</button>`)
 		}
-	})
-}
+	});
+};
 
 function nextButton() {
 	$('.quiz-box').on('click', '.next-btn', function(e) {
@@ -195,44 +176,31 @@ function nextButton() {
 		hideContents();
 		incrementQNumber();
 		if (qnumber < 10) {
-			renderQuestion();
+			showNewQuestion();
 		} else {
 			showFinal();
 		}
-		
-	})
-}
-
-function showFinalBad() {
-	hideContents();
-	$('.quiz-box').html(`<h2>That was a worse display than Liverpool's Premier League title efforts. Better luck next time!</h2><img class="final-image" src="images/quiz-app-liverpool-loss.jpg" alt="Liverpool after losing a soccer match."><p>You scored ${score}/10</p><button role="button" type="button" class="btn end-btn">Rematch</button>`)
-}
-
-function showFinalGood() {
-	hideContents();
-	$('.quiz-box').html(`<h2>All of those early Saturday mornings paid off!<br> You know your stuff.</h2><img class="final-image" src="images/quiz-app-chelsea-win.JPG" alt="Chelsea FC win the Premier League."><p>You scored ${score}/10</p><button role="button" type="button" class="btn end-btn">Rematch</button>`)
-}
+	});
+};
 
 function showFinal() {
 	if (score > 5) {
-		showFinalGood();
+		hideContents();
+		$('.quiz-box').html(`<h2>All of those early Saturday mornings paid off!<br> You know your stuff.</h2><img class="final-image" src="images/quiz-app-chelsea-win.JPG" alt="Chelsea FC win the Premier League."><p>You scored ${score}/10</p><button role="button" type="button" class="btn end-btn">Rematch</button>`)
 	} else {
-		showFinalBad();
+		hideContents();
+		$('.quiz-box').html(`<h2>That was a worse display than Liverpool's Premier League title efforts. Better luck next time!</h2><img class="final-image" src="images/quiz-app-liverpool-loss.jpg" alt="Liverpool after losing a soccer match."><p>You scored ${score}/10</p><button role="button" type="button" class="btn end-btn">Rematch</button>`)
 	}
 	$('.qnumber').text(10);
 }
 
-function restart() {
-	hideContents();
-	$('.quiz-box').html(`<h2 class="quiz-subtitle">How much do you know about the Premier League?</h2><img src="images/quiz-app-players.jpg"><button role="button" type="button" class="btn start-btn">Kickoff</button>`);
-	resetCounters();
-	startQuiz();
-}
 
 function tryAgain() {
 	$('.quiz-box').on('click', '.end-btn', function() {
-		restart();
-
+		hideContents();
+		$('.quiz-box').html(`<h2 class="quiz-subtitle">How much do you know about the Premier League?</h2><img src="images/quiz-app-players.jpg"><button role="button" type="button" class="btn start-btn">Kickoff</button>`);
+		resetCounters();
+		startQuiz();
 	})
 }
 

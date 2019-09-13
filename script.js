@@ -167,7 +167,6 @@ function showResult() {
 	$('.quiz-box').on('click', '.submit-btn', function(e) {
 		e.preventDefault();
 		let choice = Number($('input[name="options"]:checked').val());
-		console.log(choice)
 		if (isNaN(choice)) {
 			alert('Please pick an option!');
 		} else if (choice === STORE[qnumber].correct) {
